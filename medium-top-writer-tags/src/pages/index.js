@@ -1,7 +1,7 @@
 import * as React from "react";
-import TextField from "@material-ui/core/TextField";
-
-import Slider from "../components/slider";
+import { TextField } from "@material-ui/core";
+import Slider from "../components/Slider";
+import SortMenu from "../components/SortMenu";
 // TODO Understand slider better and move to own component if necessary
 
 const IndexPage = () => {
@@ -20,14 +20,21 @@ const IndexPage = () => {
       />
 
       <p style={{ textAlign: "center" }}>Hello World!</p>
-      <TextField
-        id="outlined-search"
-        label="Search for tag"
-        type="search"
-        variant="outlined"
-        align
-        style={{ width: "200px" }}
-      />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <TextField
+          id="outlined-search"
+          label="Search for tag"
+          type="search"
+          variant="outlined"
+          style={{ width: "200px" }}
+        />
+        <SortMenu />
+      </div>
       <Slider />
     </div>
   );
