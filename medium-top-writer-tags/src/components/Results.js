@@ -16,26 +16,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function renderRow(props) {
-  const { index, style } = props;
+  const { index, data, style } = props;
 
   return (
     <ListItem button style={style} key={index}>
-      <ListItemText primary={`Item ${index + 1}`} />
+      <ListItemText
+        primary={`${data.tags[index]} ${data.writerCounts[index]}`}
+      />
     </ListItem>
   );
 }
 
-renderRow.propTypes = {
-  index: PropTypes.number.isRequired,
-  style: PropTypes.object.isRequired,
-};
-
-export default () => {
+export default (props) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <FixedSizeList height={400} width={300} itemSize={46} itemCount={15}>
+      <FixedSizeList
+        height={400}
+        width={300}
+        itemSize={46}
+        itemCount={props.tags.length}
+        itemData={{ tags: props.tags, writerCounts: props.writerCounts }}
+      >
         {renderRow}
       </FixedSizeList>
     </div>
