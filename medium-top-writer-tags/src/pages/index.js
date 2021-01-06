@@ -3,6 +3,7 @@ import { TextField } from "@material-ui/core";
 import Slider from "../components/Slider";
 import SortMenu from "../components/SortMenu";
 import Results from "../components/Results";
+import tags from "../utils/mock-tags";
 // TODO Understand slider better and move to own component if necessary
 
 const IndexPage = () => {
@@ -37,7 +38,13 @@ const IndexPage = () => {
         <SortMenu />
       </div>
       <Slider />
-      <Results />
+      <Results
+        tags={tags}
+        writerCounts={((tags) =>
+          Array.from({ length: tags.length }, () =>
+            Math.floor(Math.random() * 51)
+          ))(tags)}
+      />
     </div>
   );
 };
