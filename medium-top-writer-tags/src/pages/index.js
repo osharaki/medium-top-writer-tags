@@ -2,6 +2,7 @@ import * as React from "react";
 import { TextField } from "@material-ui/core";
 import Slider from "../components/Slider";
 import SortMenu from "../components/SortMenu";
+import Results from "../components/Results";
 // TODO Understand slider better and move to own component if necessary
 
 const IndexPage = () => {
@@ -19,7 +20,7 @@ const IndexPage = () => {
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
       />
 
-      <p style={{ textAlign: "center" }}>Hello World!</p>
+      <p style={{ textAlign: "center" }}>Medium Top Writer Tags</p>
       <div
         style={{
           display: "flex",
@@ -36,6 +37,7 @@ const IndexPage = () => {
         <SortMenu />
       </div>
       <Slider />
+      <Results />
     </div>
   );
 };
