@@ -3,10 +3,40 @@ import { TextField } from "@material-ui/core";
 import Slider from "../components/Slider";
 import SortMenu from "../components/SortMenu";
 import Results from "../components/Results";
-import tags from "../utils/mock-tags";
-// TODO Understand slider better and move to own component if necessary
+import { tags, writerCounts } from "../utils/mock-tags";
 
 const IndexPage = () => {
+  const [matchingTags, setMatchingTags] = React.useState([tags, writerCounts]);
+  let textFieldValue = "";
+  const [sliderRange, setSliderRange] = React.useState([0, 50]);
+
+  const handleTextFieldChange = (query) => {
+    textFieldValue = query;
+    filterTags();
+  };
+
+  const handleSliderChange = (newSliderRange) => {
+    setSliderRange(newSliderRange);
+    filterTags();
+  };
+
+  const filterTags = () => {
+    // console.log(`Calling filter tags..`);
+    // console.log(`Slider range: ${sliderRange}`);
+    const matchingTagsTmp = [[], []]; // empty list
+    for (let i = 0; i < tags.length; i++) {
+      if (
+        tags[i].includes(textFieldValue) &&
+        writerCounts[i] >= sliderRange[0] &&
+        writerCounts[i] <= sliderRange[1]
+      ) {
+        matchingTagsTmp[0].push(tags[i]);
+        matchingTagsTmp[1].push(writerCounts[i]);
+      }
+    }
+    setMatchingTags(matchingTagsTmp);
+  };
+
   return (
     <div
       style={{
@@ -37,14 +67,8 @@ const IndexPage = () => {
         />
         <SortMenu />
       </div>
-      <Slider />
-      <Results
-        tags={tags}
-        writerCounts={((tags) =>
-          Array.from({ length: tags.length }, () =>
-            Math.floor(Math.random() * 51)
-          ))(tags)}
-      />
+      <Slider value={sliderRange} setValue={handleSliderChange} />
+      <Results tags={matchingTags[0]} writerCounts={matchingTags[1]} />
     </div>
   );
 };

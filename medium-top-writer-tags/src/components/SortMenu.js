@@ -86,9 +86,8 @@ export default () => {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={handleClose}>By # of writers</MenuItem>
+                    <MenuItem onClick={handleClose}>Alphabetically</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

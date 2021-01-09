@@ -2,11 +2,11 @@ import * as React from "react";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import { makeStyles } from "@material-ui/core/styles";
-export default () => {
-  const [value, setValue] = React.useState([0, 50]);
+export default (props) => {
+  // const [value, setValue] = React.useState([0, 50]);
 
-  function valuetext(value) {
-    return `Showing tags with ${value[0]} to ${value[1]} writers`;
+  function valuetext() {
+    return `Showing tags with ${props.value[0]} to ${props.value[1]} writers`;
   }
 
   const useStyles = makeStyles({
@@ -17,11 +17,12 @@ export default () => {
   const classes = useStyles();
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    props.setValue(newValue);
   };
+
   const slider = (
     <Slider
-      value={value}
+      value={props.value}
       onChange={handleChange}
       valueLabelDisplay="auto"
       aria-labelledby="range-slider"
